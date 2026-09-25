@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Revitalização do Busca de Startups — Pedro Perez Dela Torre</title>
+<meta name="description" content="Case study: redesign da ferramenta de busca de startups da Distrito." />
+<link rel="icon" href="assets/logo.png" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/case-study.css" />
+<style>
+/* Diagrama de anotações da Solução — específico desta página */
+.cs-annot-stage{position:relative;width:100%;aspect-ratio:1440/560;margin:16px auto 0;}
+.cs-annot-stage svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.cs-annot-img{
+  position:absolute;left:0;top:0;width:64%;height:91.85%;
+  border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.14);
+  box-shadow:0 30px 80px rgba(0,0,0,0.55);background:#111;
+}
+.cs-annot-img img{display:block;width:100%;height:100%;object-fit:cover;}
+.cs-annot-cards-col{position:absolute;left:68%;top:0;width:30%;display:flex;flex-direction:column;gap:14px;}
+.cs-annot-card{
+  background:rgba(255,255,255,0.06);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
+  border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:16px 18px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.35);
+}
+.cs-annot-text{font-size:14px;font-weight:300;line-height:1.55;color:rgba(255,255,255,0.68);}
+.cs-annot-num{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--orange);margin-right:10px;vertical-align:middle;}
+.cs-annot-dot{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 5px rgba(251,78,1,0.22);transform:translate(-50%,-50%);}
+@media (max-width:820px){
+  .cs-annot-stage{aspect-ratio:auto;height:auto;}
+  .cs-annot-stage svg{display:none;}
+  .cs-annot-img{position:static;width:100%;height:auto;}
+  .cs-annot-img img{height:auto;}
+  .cs-annot-cards-col{position:static;width:100%;margin-top:14px;}
+  .cs-annot-dot{display:none;}
+}
+/* JS-driven fallback: same stacked treatment, applied whenever the cards don't fit the image height, regardless of viewport */
+.cs-annot-stage.is-stacked{aspect-ratio:auto;height:auto;}
+.cs-annot-stage.is-stacked svg{display:none;}
+.cs-annot-stage.is-stacked .cs-annot-img{position:static;width:100%;height:auto;}
+.cs-annot-stage.is-stacked .cs-annot-img img{height:auto;}
+.cs-annot-stage.is-stacked .cs-annot-cards-col{position:static;width:100%;margin-top:14px;gap:14px !important;}
+.cs-annot-stage.is-stacked .cs-annot-dot{display:none;}
+</style>
+</head>
+<body class="case-study">
+
+<a href="index.html#projetos" class="cs-back">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+  Voltar aos projetos
+</a>
+
+<section class="cs-hero">
+  <div class="cs-heroimg" style="background-image:url('assets/case-study/vibe-flame.png')"></div>
+  <div class="cs-darken"></div>
+  <div class="cs-grain"></div>
+  <div class="cs-hero-body">
+    <h1>Revitalização do <em>Busca de Startups</em></h1>
+    <div class="cs-glass-card">
+      <div class="meta-item"><label>Cliente</label><span>Distrito</span></div>
+      <div class="meta-item"><label>Papel</label><span>Product Designer</span></div>
+      <div class="meta-item"><label>Ano</label><span>2025</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="cs-cover-wrap"><img src="assets/project-distrito-cover.png" alt="Revitalização do Busca de Startups" style="object-position:center 90%;" /></div>
+
+<div class="cs-content">
+  <div class="glow-spot a"></div>
+  <div>
+    <h2 class="cs-section-title">Visão geral</h2>
+    <p class="cs-body-text">O Busca de Startups é a principal ferramenta do SaaS do Distrito. A empresa possui o maior banco de dados de startups da América Latina, e essa feature existe para possibilitar uma pesquisa aprofundada nesse banco. A questão é que o nosso então CEO nos fez a seguinte pergunta: "Por que a nossa feature de maior valor dentro da empresa não tem despertado interesse nos nossos usuários?" e os números confirmavam, 60% das pesquisas iniciadas não eram concluídas.</p>
+    <p class="cs-body-text" style="margin-top:20px;">Guiei a revitalização da sua página inicial, que possuía fricções desnecessárias, jornadas mal pensadas e uma alta carga cognitiva para o usuário.</p>
+    <div class="cs-editorial-title">Interface antiga</div>
+    <div class="cs-editorial-rule"></div>
+    <div class="cs-editorial-img">
+      <img src="assets/case-study/distrito/busca-antigo.png" alt="Busca de startups - interface antiga" />
+    </div>
+    <div class="cs-editorial-rule bottom-right"></div>
+    <div class="cs-editorial-cap">Navegação lateral extensa e alta carga cognitiva</div>
+  </div>
+
+  <div>
+    <h2 class="cs-section-title">Desafio e insights</h2>
+    <p class="cs-body-text">Nosso principal objetivo era claro: tornar a pesquisa fácil e intuitiva e para isso, começamos pelo início, entendendo o usuário. Depois de diversas pesquisas (workshops com stakeholders, survey com usuários ativos e lost users, entrevistas 1:1, benchmarks e análise de dados), chegamos à conclusão que a quantidade de informações presentes na tela de início (uma vez inseridas com a ideia de complementar a busca) mais confundiam e frustravam o usuário do que de fato o ajudavam.</p>
+    <p class="cs-body-text" style="margin-top:20px;">Não deveríamos reinventar a roda, muito pelo contrário, ferramentas de pesquisa são, quiçá, o recurso mais antigo da internet. Por que não usar as já bem aceitas como base? Tivemos a intenção de manter essa ação no imaginário comum, por isso os protótipos desenvolvidos nesse projeto tiveram forte influência em soluções usadas pelo Google, Chat GPT e até o buscar do Instagram.</p>  </div>
+
+</div>
+
+<div class="cs-strip-divider"></div>
+
+<div class="cs-content">
+  <div class="glow-spot c"></div>
+  <div>
+    <h2 class="cs-section-title">Solução</h2>
+    <p class="cs-body-text">Com um caminho bem traçado — mapeado em wireframes, jornadas e em uma matriz de priorização por impacto x esforço —, diminuímos a quantidade de insumos iniciais e focamos a atenção do usuário no que realmente era importante nessa tela: a busca. Os filtros e salvamentos foram mantidos, mas tendo um peso secundário na experiência. Criamos sugestões de pesquisas para ajudar àqueles que não tinham uma certeza de por onde começar e adicionamos informativos das atualizações do banco de dados. Ações mais avançadas ficaram "camufladas" para os usuários casuais, mas continuam acessíveis para os power users.</p>
+    <p class="cs-body-text" style="margin-top:20px;">Em três meses de implementação, os resultados do redesign eram notáveis. Os usuários gerais da plataforma aumentaram, o número de pesquisas completas cresceu, a taxa de turnovers na ferramenta diminuiu e 30% das pesquisas passaram a ser feitas através das sugestões. Fizemos um acompanhamento com os stakeholders e a mudança foi muito bem recebida, praticamente ressucitando a ferramenta.</p>
+    <div class="cs-editorial-title">Interface nova</div>
+    <div class="cs-editorial-rule"></div>
+    <div class="cs-editorial-img">
+      <img src="assets/case-study/distrito/busca-novo.png" alt="Busca de startups - interface redesenhada" />
+    </div>
+    <div class="cs-editorial-rule bottom-right"></div>
+    <div class="cs-editorial-cap">Busca como ação principal e sugestões de pesquisa</div>
+
+    <div class="cs-editorial-title">Decisões de design</div>
+    <div class="cs-editorial-rule"></div>
+
+    <div class="cs-annot-stage">
+      <div class="cs-annot-img">
+        <img src="assets/case-study/distrito/busca-novo.png" alt="Interface da busca de startups redesenhada" />
+      </div>
+
+      <div class="cs-annot-cards-col">
+        <div class="cs-annot-card">
+          <div class="cs-annot-text"><span class="cs-annot-num"></span>Diminuição da carga cognitiva</div>
+        </div>
+        <div class="cs-annot-card cs-annot-linked">
+          <div class="cs-annot-text"><span class="cs-annot-num"></span>Ações avançadas camufladas para soft users, mas presentes para os power users</div>
+        </div>
+        <div class="cs-annot-card cs-annot-linked">
+          <div class="cs-annot-text"><span class="cs-annot-num"></span>Buscador como ação principal da experiência</div>
+        </div>
+        <div class="cs-annot-card cs-annot-linked">
+          <div class="cs-annot-text"><span class="cs-annot-num"></span>Sugestões de temas e assuntos de pesquisa</div>
+        </div>
+        <div class="cs-annot-card cs-annot-linked">
+          <div class="cs-annot-text"><span class="cs-annot-num"></span>Big numbers reafirmando o valor da feature</div>
+        </div>
+      </div>
+
+      <svg viewBox="0 0 1440 560" role="img" aria-label="Linhas em ângulo reto conectando cada cartão de anotação ao ponto correspondente na tela">
+        <defs>
+          <marker id="annotArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--orange)"></path>
+          </marker>
+        </defs>
+        <g fill="none" stroke="var(--orange)" stroke-width="1.5" opacity="0.85">
+          <path class="cs-annot-line" data-x2="888.2" data-y2="143.4" marker-end="url(#annotArrow)"></path>
+          <path class="cs-annot-line" data-x2="452.0" data-y2="143.2" marker-end="url(#annotArrow)"></path>
+          <path class="cs-annot-line" data-x2="888.2" data-y2="271.8" marker-end="url(#annotArrow)"></path>
+          <path class="cs-annot-line" data-x2="888.2" data-y2="432.6" marker-end="url(#annotArrow)"></path>
+        </g>
+      </svg>
+
+      <div class="cs-annot-dot" style="left:61.68%;top:25.61%;"></div>
+      <div class="cs-annot-dot" style="left:31.39%;top:25.57%;"></div>
+      <div class="cs-annot-dot" style="left:61.68%;top:48.54%;"></div>
+      <div class="cs-annot-dot" style="left:61.68%;top:77.25%;"></div>
+    </div>
+
+    <div class="cs-editorial-rule bottom-right"></div>
+    <div class="cs-editorial-cap">Baseadas nas pesquisas e Heurísticas</div>
+  </div>
+
+  <div class="cs-result-row">
+    <div class="cs-rail-accent"></div>
+    <div class="cs-result-card">
+      <h2 class="cs-section-title" style="margin-bottom:24px;">Resultados</h2>
+      <ul class="cs-result-list">
+        <li>+15% de usuários gerais na plataforma</li>
+        <li>+45% de pesquisas completas</li>
+        <li>-18% de turnover na ferramenta</li>
+        <li>30% das pesquisas realizadas através das sugestões</li>
+      </ul>
+      <p class="cs-gallery-note" style="margin-top:24px;">"Os scouts do time voltaram a ser feitos pelo Busca."</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  function updateCardsGap(){
+    var stage = document.querySelector('.cs-annot-stage');
+    var col = document.querySelector('.cs-annot-cards-col');
+    var img = document.querySelector('.cs-annot-img');
+    if (!stage || !col || !img) return;
+    stage.classList.remove('is-stacked');
+    col.style.gap = '';
+    if (getComputedStyle(col).position === 'static') return;
+    var cards = col.querySelectorAll('.cs-annot-card');
+    if (cards.length < 2) return;
+    var imgHeight = img.getBoundingClientRect().height;
+    var totalCardHeight = 0;
+    cards.forEach(function(c){ totalCardHeight += c.getBoundingClientRect().height; });
+    var gap = (imgHeight - totalCardHeight) / (cards.length - 1);
+    if (gap < 0) {
+      stage.classList.add('is-stacked');
+    } else {
+      col.style.gap = gap + 'px';
+    }
+  }
+  function updateAnnotLines(){
+    var stage = document.querySelector('.cs-annot-stage');
+    if (!stage) return;
+    var svg = stage.querySelector('svg');
+    if (!svg || getComputedStyle(svg).display === 'none') return;
+    var stageRect = stage.getBoundingClientRect();
+    if (!stageRect.width || !stageRect.height) return;
+    var vb = svg.viewBox.baseVal;
+    var connectors = svg.querySelectorAll('.cs-annot-line');
+    var cards = stage.querySelectorAll('.cs-annot-linked');
+    cards.forEach(function(card, i){
+      var el = connectors[i];
+      if (!el) return;
+      var r = card.getBoundingClientRect();
+      var xPx = r.left - stageRect.left;
+      var yPx = r.top - stageRect.top + r.height / 2;
+      var x1 = xPx / stageRect.width * vb.width;
+      var y1 = yPx / stageRect.height * vb.height;
+      var x2 = parseFloat(el.dataset.x2);
+      var y2 = parseFloat(el.dataset.y2);
+      if (i === 1) {
+        var yAcoes = parseFloat(connectors[0].dataset.y2);
+        var ySugestoes = parseFloat(connectors[2].dataset.y2);
+        var yMid = (yAcoes + ySugestoes) / 2;
+        var crossX = (x1 + parseFloat(connectors[0].dataset.x2)) / 2;
+        var stubX = x2 + (crossX - x2) * 0.2;
+        el.setAttribute('d', 'M' + x2.toFixed(2) + ',' + y2.toFixed(2) + ' L' + stubX.toFixed(2) + ',' + y2.toFixed(2) + ' L' + stubX.toFixed(2) + ',' + yMid.toFixed(2) + ' L' + crossX.toFixed(2) + ',' + yMid.toFixed(2) + ' L' + crossX.toFixed(2) + ',' + y1.toFixed(2) + ' L' + x1.toFixed(2) + ',' + y1.toFixed(2));
+      } else if (i === 2) {
+        el.setAttribute('d', 'M' + x2.toFixed(2) + ',' + y2.toFixed(2) + ' L' + x2.toFixed(2) + ',' + y1.toFixed(2) + ' L' + x1.toFixed(2) + ',' + y1.toFixed(2));
+      } else {
+        var midX = (x1 + x2) / 2;
+        el.setAttribute('d', 'M' + x2.toFixed(2) + ',' + y2.toFixed(2) + ' L' + midX.toFixed(2) + ',' + y2.toFixed(2) + ' L' + midX.toFixed(2) + ',' + y1.toFixed(2) + ' L' + x1.toFixed(2) + ',' + y1.toFixed(2));
+      }
+    });
+  }
+  function updateAnnotDiagram(){
+    updateCardsGap();
+    updateAnnotLines();
+  }
+  window.addEventListener('load', updateAnnotDiagram);
+  window.addEventListener('resize', updateAnnotDiagram);
+})();
+</script>
+
+</body>
+</html>
