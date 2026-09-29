@@ -1,32 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
   const topbar = document.querySelector(".topbar");
-  const toggleScrolled = () => {
-    topbar.classList.toggle("is-scrolled", window.scrollY > 40);
-  };
-  toggleScrolled();
-  window.addEventListener("scroll", toggleScrolled, { passive: true });
+  if (topbar) {
+    const toggleScrolled = () => {
+      topbar.classList.toggle("is-scrolled", window.scrollY > 40);
+    };
+    toggleScrolled();
+    window.addEventListener("scroll", toggleScrolled, { passive: true });
+  }
 
   const links = document.querySelectorAll(".nav-pill a[data-section]");
   const sections = [...links]
     .map((link) => document.getElementById(link.dataset.section))
     .filter(Boolean);
 
-  const setActive = (id) => {
-    links.forEach((link) => {
-      link.classList.toggle("is-active", link.dataset.section === id);
-    });
-  };
+  if (sections.length) {
+    const setActive = (id) => {
+      links.forEach((link) => {
+        link.classList.toggle("is-active", link.dataset.section === id);
+      });
+    };
 
-  const updateActiveFromScroll = () => {
-    const mid = window.scrollY + window.innerHeight / 2;
-    let current = sections[0];
-    for (const section of sections) {
-      if (section.offsetTop <= mid) current = section;
-    }
-    setActive(current.id);
-  };
-  updateActiveFromScroll();
-  window.addEventListener("scroll", updateActiveFromScroll, { passive: true });
+    const updateActiveFromScroll = () => {
+      const mid = window.scrollY + window.innerHeight / 2;
+      let current = sections[0];
+      for (const section of sections) {
+        if (section.offsetTop <= mid) current = section;
+      }
+      setActive(current.id);
+    };
+    updateActiveFromScroll();
+    window.addEventListener("scroll", updateActiveFromScroll, { passive: true });
+  }
 
   const ball = document.querySelector(".projects-ball");
   const projetos = document.getElementById("projetos");
@@ -65,5 +69,56 @@ document.addEventListener("DOMContentLoaded", () => {
       { passive: true }
     );
     updateBall();
+  }
+
+  // ---------- Ambient cursor glow ----------
+  const glow = document.querySelector(".cursor-glow");
+  if (glow) {
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (canHover && !reducedMotion) {
+      let targetX = window.innerWidth / 2;
+      let targetY = window.innerHeight / 2;
+      let curX = targetX;
+      let curY = targetY;
+      let started = false;
+
+      window.addEventListener(
+        "pointermove",
+        (e) => {
+          targetX = e.clientX;
+          targetY = e.clientY;
+          if (!started) {
+            curX = targetX;
+            curY = targetY;
+            started = true;
+            glow.classList.add("is-active");
+          }
+        },
+        { passive: true }
+      );
+
+      const tick = () => {
+        curX += (targetX - curX) * 0.1;
+        curY += (targetY - curY) * 0.1;
+        glow.style.transform = `translate3d(${curX}px, ${curY}px, 0)`;
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+  }
+
+  // ---------- Click pulse ripple ----------
+  const reducedMotionClick = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reducedMotionClick) {
+    const pulseSelector = ".nav-pill a, .project-card, .contact-col a, .back-top, .arrow-btn, .cs-back";
+    document.addEventListener("click", (e) => {
+      const target = e.target.closest(pulseSelector);
+      if (!target) return;
+      const ripple = document.createElement("span");
+      ripple.className = "pulse-ripple";
+      ripple.addEventListener("animationend", () => ripple.remove());
+      target.appendChild(ripple);
+    });
   }
 });

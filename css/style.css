@@ -51,7 +51,7 @@
 
 /* ---------- Reset ---------- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   font-family: "Neue Haas Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: #0a0a0a;
@@ -70,6 +70,63 @@ button { font: inherit; }
   --black: #0a0a0a;
   --page-pad: clamp(24px, 4vw, 48px);
   --topbar-h: clamp(72px, 9vw, 104px);
+}
+
+/* ---------- Ambient cursor glow ---------- */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 640px;
+  height: 640px;
+  margin: -320px 0 0 -320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(251, 78, 1, 0.35), transparent 70%);
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  will-change: transform;
+}
+.cursor-glow.is-active { opacity: 1; }
+
+/* ---------- Interactive pulse (hover + click) ---------- */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(251, 78, 1, 0.45); }
+  50% { box-shadow: 0 0 0 10px rgba(251, 78, 1, 0); }
+}
+@keyframes pulse-ripple {
+  from { transform: scale(1); opacity: 0.9; }
+  to { transform: scale(9); opacity: 0; }
+}
+.pulse-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(251, 78, 1, 0.6), transparent 70%);
+  pointer-events: none;
+  z-index: 5;
+  animation: pulse-ripple 0.6s ease-out forwards;
+}
+.nav-pill a,
+.contact-col a,
+.back-top {
+  position: relative;
+}
+.nav-pill a { border-radius: 50%; }
+.contact-col a,
+.back-top { border-radius: 6px; }
+.nav-pill a:hover,
+.project-card:hover,
+.contact-col a:hover,
+.back-top:hover,
+.arrow-btn:hover {
+  animation: pulse-glow 1.6s ease-out infinite;
 }
 
 /* ---------- Topbar: logo | nav pill | name, all on one vertical axis ---------- */
@@ -465,5 +522,17 @@ button { font: inherit; }
     grid-template-columns: 1fr;
     align-items: start;
     gap: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-glow { display: none; }
+  .pulse-ripple { display: none; }
+  .nav-pill a:hover,
+  .project-card:hover,
+  .contact-col a:hover,
+  .back-top:hover,
+  .arrow-btn:hover {
+    animation: none;
   }
 }
