@@ -83,10 +83,10 @@ document.addEventListener("DOMContentLoaded", () => {
       let curY = targetY;
       let started = false;
 
-      // On the home page, the glow only turns on once the Home hero has
-      // scrolled out of view (it stays off over the orange hero section).
-      const homeSection = document.getElementById("home");
-      const gateByScroll = homeSection && document.getElementById("projetos");
+      // On the home page, the glow only shows while the "Principais
+      // projetos" section is in view (off over the Home hero and the footer).
+      const projetosSection = document.getElementById("projetos");
+      const gateByScroll = document.getElementById("home") && projetosSection;
 
       const updateGlowGate = () => {
         if (!started) return;
@@ -94,8 +94,10 @@ document.addEventListener("DOMContentLoaded", () => {
           glow.classList.add("is-active");
           return;
         }
-        const pastHome = homeSection.getBoundingClientRect().bottom <= window.innerHeight * 0.5;
-        glow.classList.toggle("is-active", pastHome);
+        const rect = projetosSection.getBoundingClientRect();
+        const mid = window.innerHeight * 0.5;
+        const inProjetos = rect.top <= mid && rect.bottom >= mid;
+        glow.classList.toggle("is-active", inProjetos);
       };
 
       window.addEventListener(
