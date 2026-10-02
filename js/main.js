@@ -35,8 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const ball = document.querySelector(".projects-ball");
   const projetos = document.getElementById("projetos");
   if (ball && projetos) {
-    let ticking = false;
-    const updateBall = () => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const computeTarget = () => {
       const rect = projetos.getBoundingClientRect();
       const vh = window.innerHeight;
       const vw = window.innerWidth;
@@ -51,24 +52,44 @@ document.addEventListener("DOMContentLoaded", () => {
       const curveY = -Math.sin(t) * vh * 0.08;
       const scale = 0.6 + 0.55 * Math.sin(t);
 
-      const targetX = baseX + curveX;
-      const targetYViewport = baseYViewport + curveY;
-      const ballTopInSection = progress * scrollRange + targetYViewport;
+      const x = baseX + curveX;
+      const yViewport = baseYViewport + curveY;
+      const top = progress * scrollRange + yViewport;
 
-      ball.style.transform = `translate(calc(${targetX}px - 50%), calc(${ballTopInSection}px - 50%)) scale(${scale})`;
-      ticking = false;
+      return { x, top, scale };
     };
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (!ticking) {
-          requestAnimationFrame(updateBall);
-          ticking = true;
+
+    if (reducedMotion) {
+      const snap = () => {
+        const { x, top, scale } = computeTarget();
+        ball.style.transform = `translate(calc(${x}px - 50%), calc(${top}px - 50%)) scale(${scale})`;
+      };
+      window.addEventListener("scroll", snap, { passive: true });
+      snap();
+    } else {
+      // Ease the ball's rendered position toward the scroll-driven target
+      // instead of snapping to it every scroll tick, so the motion trails
+      // smoothly rather than jumping with each wheel/trackpad step.
+      let curX, curTop, curScale;
+      let started = false;
+
+      const tick = () => {
+        const { x, top, scale } = computeTarget();
+        if (!started) {
+          curX = x;
+          curTop = top;
+          curScale = scale;
+          started = true;
+        } else {
+          curX += (x - curX) * 0.07;
+          curTop += (top - curTop) * 0.07;
+          curScale += (scale - curScale) * 0.07;
         }
-      },
-      { passive: true }
-    );
-    updateBall();
+        ball.style.transform = `translate(calc(${curX}px - 50%), calc(${curTop}px - 50%)) scale(${curScale})`;
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
   }
 
   // ---------- Ambient cursor glow (case study pages only, not the home page) ----------
