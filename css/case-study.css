@@ -256,7 +256,6 @@ body.case-study::before {
   display: block;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: var(--orange) rgba(255, 255, 255, 0.08);
 }
