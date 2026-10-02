@@ -333,6 +333,15 @@ body.case-study::before {
   background-size: 400% auto;
   background-position: 15% center;
 }
+.cs-rail-accent::before {
+  content: "";
+  position: absolute;
+  inset: -40% -150%;
+  background: radial-gradient(circle, rgba(255, 190, 140, 0.95), transparent 65%);
+  filter: blur(5px);
+  animation: rail-liquid-blob 4.5s ease-in-out infinite;
+  mix-blend-mode: overlay;
+}
 .cs-rail-accent::after {
   content: "";
   position: absolute;
@@ -347,12 +356,18 @@ body.case-study::before {
   );
   background-size: 100% 250%;
   background-position: 0% 0%;
-  animation: rail-cascade 3.5s ease-in-out infinite;
+  filter: blur(1px);
+  animation: rail-cascade 3.2s ease-in-out infinite;
   mix-blend-mode: overlay;
 }
 @keyframes rail-cascade {
   0% { background-position: 0% 0%; }
   100% { background-position: 0% 100%; }
+}
+@keyframes rail-liquid-blob {
+  0%, 100% { transform: translate(-15%, -20%) scale(1); }
+  33% { transform: translate(15%, 10%) scale(1.4); }
+  66% { transform: translate(-10%, 30%) scale(0.85); }
 }
 
 /* ---------- Glass border glow ---------- */
@@ -362,13 +377,11 @@ body.case-study::before {
   initial-value: 0deg;
 }
 .cs-glass-card,
-.cs-result-card,
 .cs-compare figure,
 .cs-gallery-grid figure {
   position: relative;
 }
 .cs-glass-card::before,
-.cs-result-card::before,
 .cs-compare figure::before,
 .cs-gallery-grid figure::before {
   content: "";
@@ -398,9 +411,9 @@ body.case-study::before {
 
 @media (prefers-reduced-motion: reduce) {
   .cs-back { transition: none; }
+  .cs-rail-accent::before,
   .cs-rail-accent::after { animation: none; }
   .cs-glass-card::before,
-  .cs-result-card::before,
   .cs-compare figure::before,
   .cs-gallery-grid figure::before {
     animation: none;

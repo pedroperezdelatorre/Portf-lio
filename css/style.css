@@ -116,16 +116,12 @@ button { font: inherit; }
 .nav-pill a { border-radius: 50%; }
 .contact-col a,
 .back-top { border-radius: 6px; }
-.nav-pill a,
 .project-card,
-.contact-col a,
 .back-top,
 .arrow-btn {
   transition: box-shadow 0.25s ease;
 }
-.nav-pill a:hover,
 .project-card:hover,
-.contact-col a:hover,
 .back-top:hover,
 .arrow-btn:hover {
   box-shadow: 0 0 0 1px rgba(251, 78, 1, 0.5), 0 0 22px 4px rgba(251, 78, 1, 0.4);
@@ -201,7 +197,7 @@ button { font: inherit; }
   width: 21px;
   height: 21px;
 }
-.nav-pill a:hover { color: rgba(255, 255, 255, 0.7); }
+.nav-pill a:hover { color: var(--orange); }
 .nav-pill a.is-active {
   color: #fff;
 }
@@ -529,9 +525,7 @@ button { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   .cursor-glow { display: none; }
   .pulse-ripple { display: none; }
-  .nav-pill a,
   .project-card,
-  .contact-col a,
   .back-top,
   .arrow-btn {
     transition: none;
