@@ -41,6 +41,17 @@
   font-style: normal;
   font-display: swap;
 }
+/* The Bold file's cmap maps uppercase Ã/Õ to the wrong (acute-accented)
+   glyphs. Borrow just those two codepoints from the Black weight, which
+   has them correct, so "VISÃO"/"RAZÕES" etc. render with a proper til. */
+@font-face {
+  font-family: "Neue Haas Display";
+  src: url("../fonts/NeueHaasDisplayBlack.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+00C3, U+00D5;
+}
 @font-face {
   font-family: "Neue Haas Display";
   src: url("../fonts/NeueHaasDisplayBlack.ttf") format("truetype");
