@@ -491,17 +491,7 @@ button { font: inherit; }
     bottom: 40px;
   }
   .hero-tags {
-    position: absolute;
-    top: calc(var(--topbar-h) + 16px);
-    right: var(--page-pad);
-    margin-top: 0;
-    align-items: flex-end;
-    gap: 8px;
-  }
-  .tags-row {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
+    display: none;
   }
   .topbar .name { display: none; }
   .logo-mark img { width: 28px; }
