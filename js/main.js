@@ -71,9 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
     updateBall();
   }
 
-  // ---------- Ambient cursor glow ----------
+  // ---------- Ambient cursor glow (case study pages only, not the home page) ----------
   const glow = document.querySelector(".cursor-glow");
-  if (glow) {
+  const isHomePage = document.getElementById("home") && document.getElementById("projetos");
+  if (glow && !isHomePage) {
     const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (canHover && !reducedMotion) {
@@ -82,17 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
       let curX = targetX;
       let curY = targetY;
       let started = false;
-
-      // On the home page, the glow lives inside the "Principais projetos"
-      // section itself (clipped by its overflow:hidden) so it only ever
-      // shows there, cut off cleanly at the section edges, and never on
-      // the Home hero or the footer.
-      const projetosSection = document.getElementById("projetos");
-      const containGlow = document.getElementById("home") && projetosSection;
-      if (containGlow) {
-        projetosSection.appendChild(glow);
-        glow.classList.add("is-contained");
-      }
 
       window.addEventListener(
         "pointermove",
@@ -103,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
             curX = targetX;
             curY = targetY;
             started = true;
+            glow.classList.add("is-active");
           }
         },
         { passive: true }
@@ -111,17 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const tick = () => {
         curX += (targetX - curX) * 0.1;
         curY += (targetY - curY) * 0.1;
-        if (containGlow) {
-          const rect = projetosSection.getBoundingClientRect();
-          glow.style.transform = `translate3d(${curX - rect.left}px, ${curY - rect.top}px, 0)`;
-          if (started) {
-            const inProjetos = curY >= rect.top && curY <= rect.bottom;
-            glow.classList.toggle("is-active", inProjetos);
-          }
-        } else {
-          glow.style.transform = `translate3d(${curX}px, ${curY}px, 0)`;
-          if (started) glow.classList.add("is-active");
-        }
+        glow.style.transform = `translate3d(${curX}px, ${curY}px, 0)`;
         requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);

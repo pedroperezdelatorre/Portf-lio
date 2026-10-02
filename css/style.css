@@ -90,7 +90,6 @@ button { font: inherit; }
   will-change: transform;
 }
 .cursor-glow.is-active { opacity: 1; }
-.cursor-glow.is-contained { position: absolute; }
 
 /* ---------- Interactive pulse (hover + click) ---------- */
 @keyframes pulse-ripple {
