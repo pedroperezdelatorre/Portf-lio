@@ -333,41 +333,30 @@ body.case-study::before {
   background-size: 400% auto;
   background-position: 15% center;
 }
-.cs-rail-accent::before {
-  content: "";
-  position: absolute;
-  inset: -40% -150%;
-  background: radial-gradient(circle, rgba(255, 190, 140, 0.95), transparent 65%);
-  filter: blur(5px);
-  animation: rail-liquid-blob 4.5s ease-in-out infinite;
-  mix-blend-mode: overlay;
-}
 .cs-rail-accent::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -20% 0;
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.5) 45%,
-    rgba(255, 190, 140, 0.9) 50%,
-    rgba(255, 255, 255, 0.5) 55%,
-    transparent 100%
+    rgba(255, 255, 255, 0.6) 15%,
+    rgba(255, 150, 90, 1) 28%,
+    rgba(255, 255, 255, 0.6) 40%,
+    transparent 55%,
+    transparent 65%,
+    rgba(255, 190, 140, 0.95) 82%,
+    transparent 96%
   );
-  background-size: 100% 250%;
+  background-size: 100% 240%;
   background-position: 0% 0%;
-  filter: blur(1px);
-  animation: rail-cascade 3.2s ease-in-out infinite;
-  mix-blend-mode: overlay;
+  animation: rail-liquid 3.8s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
 }
-@keyframes rail-cascade {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 0% 100%; }
-}
-@keyframes rail-liquid-blob {
-  0%, 100% { transform: translate(-15%, -20%) scale(1); }
-  33% { transform: translate(15%, 10%) scale(1.4); }
-  66% { transform: translate(-10%, 30%) scale(0.85); }
+@keyframes rail-liquid {
+  0% { background-position: 0% 0%; transform: scaleY(1) scaleX(1); }
+  50% { transform: scaleY(1.04) scaleX(1.3); }
+  100% { background-position: 0% 100%; transform: scaleY(0.97) scaleX(1); }
 }
 
 /* ---------- Glass border glow ---------- */
@@ -411,7 +400,6 @@ body.case-study::before {
 
 @media (prefers-reduced-motion: reduce) {
   .cs-back { transition: none; }
-  .cs-rail-accent::before,
   .cs-rail-accent::after { animation: none; }
   .cs-glass-card::before,
   .cs-compare figure::before,

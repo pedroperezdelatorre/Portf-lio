@@ -107,20 +107,16 @@ document.addEventListener("DOMContentLoaded", () => {
             curX = targetX;
             curY = targetY;
             started = true;
-            updateGlowGate();
           }
         },
         { passive: true }
       );
 
-      if (gateByScroll) {
-        window.addEventListener("scroll", updateGlowGate, { passive: true });
-      }
-
       const tick = () => {
         curX += (targetX - curX) * 0.1;
         curY += (targetY - curY) * 0.1;
         glow.style.transform = `translate3d(${curX}px, ${curY}px, 0)`;
+        updateGlowGate();
         requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);

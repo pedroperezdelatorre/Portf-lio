@@ -80,10 +80,10 @@ button { font: inherit; }
   height: 640px;
   margin: -320px 0 0 -320px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(251, 78, 1, 0.35), transparent 70%);
+  background: radial-gradient(circle, rgba(251, 78, 1, 0.45), transparent 70%);
   filter: blur(70px);
   pointer-events: none;
-  z-index: -2;
+  z-index: 0;
   opacity: 0;
   transition: opacity 0.5s ease;
   will-change: transform;
@@ -117,12 +117,10 @@ button { font: inherit; }
 .contact-col a,
 .back-top { border-radius: 6px; }
 .project-card,
-.back-top,
 .arrow-btn {
   transition: box-shadow 0.25s ease;
 }
 .project-card:hover,
-.back-top:hover,
 .arrow-btn:hover {
   box-shadow: 0 0 0 1px rgba(251, 78, 1, 0.5), 0 0 22px 4px rgba(251, 78, 1, 0.4);
 }
@@ -282,6 +280,7 @@ button { font: inherit; }
 }
 .projects-hero {
   position: relative;
+  z-index: 1;
   min-height: 60vh;
   display: flex;
   align-items: flex-end;
@@ -294,6 +293,7 @@ button { font: inherit; }
 
 .project-list {
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: clamp(32px, 6vw, 64px);
@@ -304,6 +304,7 @@ button { font: inherit; }
 
 .project-card {
   position: relative;
+  z-index: 1;
   border-radius: 20px;
   overflow: hidden;
   background: #050505;
@@ -466,7 +467,7 @@ button { font: inherit; }
   color: rgba(255, 255, 255, 0.55);
   transition: color 0.2s ease;
 }
-.back-top:hover { color: #fff; }
+.back-top:hover { color: var(--orange); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
