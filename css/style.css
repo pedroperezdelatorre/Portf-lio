@@ -57,6 +57,7 @@ body {
   background: #0a0a0a;
   color: #fff;
   -webkit-font-smoothing: antialiased;
+  overflow: hidden;
 }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
@@ -89,6 +90,7 @@ button { font: inherit; }
   will-change: transform;
 }
 .cursor-glow.is-active { opacity: 1; }
+.cursor-glow.is-contained { position: absolute; }
 
 /* ---------- Interactive pulse (hover + click) ---------- */
 @keyframes pulse-ripple {

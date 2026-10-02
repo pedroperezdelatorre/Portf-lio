@@ -83,22 +83,16 @@ document.addEventListener("DOMContentLoaded", () => {
       let curY = targetY;
       let started = false;
 
-      // On the home page, the glow only shows while the "Principais
-      // projetos" section is in view (off over the Home hero and the footer).
+      // On the home page, the glow lives inside the "Principais projetos"
+      // section itself (clipped by its overflow:hidden) so it only ever
+      // shows there, cut off cleanly at the section edges, and never on
+      // the Home hero or the footer.
       const projetosSection = document.getElementById("projetos");
-      const gateByScroll = document.getElementById("home") && projetosSection;
-
-      const updateGlowGate = () => {
-        if (!started) return;
-        if (!gateByScroll) {
-          glow.classList.add("is-active");
-          return;
-        }
-        const rect = projetosSection.getBoundingClientRect();
-        const mid = window.innerHeight * 0.5;
-        const inProjetos = rect.top <= mid && rect.bottom >= mid;
-        glow.classList.toggle("is-active", inProjetos);
-      };
+      const containGlow = document.getElementById("home") && projetosSection;
+      if (containGlow) {
+        projetosSection.appendChild(glow);
+        glow.classList.add("is-contained");
+      }
 
       window.addEventListener(
         "pointermove",
@@ -117,8 +111,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const tick = () => {
         curX += (targetX - curX) * 0.1;
         curY += (targetY - curY) * 0.1;
-        glow.style.transform = `translate3d(${curX}px, ${curY}px, 0)`;
-        updateGlowGate();
+        if (containGlow) {
+          const rect = projetosSection.getBoundingClientRect();
+          glow.style.transform = `translate3d(${curX - rect.left}px, ${curY - rect.top}px, 0)`;
+          if (started) {
+            const inProjetos = curY >= rect.top && curY <= rect.bottom;
+            glow.classList.toggle("is-active", inProjetos);
+          }
+        } else {
+          glow.style.transform = `translate3d(${curX}px, ${curY}px, 0)`;
+          if (started) glow.classList.add("is-active");
+        }
         requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
