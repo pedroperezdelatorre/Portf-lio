@@ -57,7 +57,6 @@ body {
   background: #0a0a0a;
   color: #fff;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
@@ -92,10 +91,6 @@ button { font: inherit; }
 .cursor-glow.is-active { opacity: 1; }
 
 /* ---------- Interactive pulse (hover + click) ---------- */
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(251, 78, 1, 0.45); }
-  50% { box-shadow: 0 0 0 10px rgba(251, 78, 1, 0); }
-}
 @keyframes pulse-ripple {
   from { transform: scale(1); opacity: 0.9; }
   to { transform: scale(9); opacity: 0; }
@@ -121,12 +116,19 @@ button { font: inherit; }
 .nav-pill a { border-radius: 50%; }
 .contact-col a,
 .back-top { border-radius: 6px; }
+.nav-pill a,
+.project-card,
+.contact-col a,
+.back-top,
+.arrow-btn {
+  transition: box-shadow 0.25s ease;
+}
 .nav-pill a:hover,
 .project-card:hover,
 .contact-col a:hover,
 .back-top:hover,
 .arrow-btn:hover {
-  animation: pulse-glow 1.6s ease-out infinite;
+  box-shadow: 0 0 0 1px rgba(251, 78, 1, 0.5), 0 0 22px 4px rgba(251, 78, 1, 0.4);
 }
 
 /* ---------- Topbar: logo | nav pill | name, all on one vertical axis ---------- */
@@ -260,7 +262,6 @@ button { font: inherit; }
 #projetos {
   position: relative;
   overflow: hidden;
-  background-color: var(--black);
   background-image: url("../assets/projects-bg-plain.png");
   background-size: 100% auto;
   background-position: top center;
@@ -528,11 +529,11 @@ button { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   .cursor-glow { display: none; }
   .pulse-ripple { display: none; }
-  .nav-pill a:hover,
-  .project-card:hover,
-  .contact-col a:hover,
-  .back-top:hover,
-  .arrow-btn:hover {
-    animation: none;
+  .nav-pill a,
+  .project-card,
+  .contact-col a,
+  .back-top,
+  .arrow-btn {
+    transition: none;
   }
 }

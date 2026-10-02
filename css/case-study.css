@@ -3,7 +3,6 @@
 body.case-study {
   background: #0c0906;
   position: relative;
-  overflow-x: hidden;
 }
 
 /* continuous grain across the whole page */
@@ -50,10 +49,14 @@ body.case-study::before {
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 999px;
   padding: 10px 18px 10px 14px;
-  transition: color 0.2s ease, background 0.2s ease;
+  transition: color 0.2s ease, background 0.2s ease, box-shadow 0.25s ease;
 }
 .cs-back svg { width: 16px; height: 16px; }
-.cs-back:hover { color: #fff; background: rgba(0, 0, 0, 0.5); animation: pulse-glow 1.6s ease-out infinite; }
+.cs-back:hover {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 1px rgba(251, 78, 1, 0.5), 0 0 22px 4px rgba(251, 78, 1, 0.4);
+}
 
 .eyebrow {
   display: inline-block;
@@ -253,6 +256,7 @@ body.case-study::before {
   display: block;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: var(--orange) rgba(255, 255, 255, 0.08);
 }
@@ -393,7 +397,7 @@ body.case-study::before {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cs-back:hover { animation: none; }
+  .cs-back { transition: none; }
   .cs-rail-accent::after { animation: none; }
   .cs-glass-card::before,
   .cs-result-card::before,
