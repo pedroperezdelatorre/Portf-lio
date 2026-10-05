@@ -185,7 +185,7 @@ button { font: inherit; }
   text-underline-offset: 2px;
   transition: color 0.2s ease;
 }
-.resume-link:hover { color: var(--orange); }
+.resume-link:hover { color: var(--black); }
 
 .topbar.is-scrolled .logo-mark,
 .topbar.is-scrolled .name-col {
