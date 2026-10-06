@@ -3,14 +3,26 @@ document.addEventListener("DOMContentLoaded", () => {
   if (heroVideo) {
     heroVideo.playbackRate = 0.85;
     // Open on the side-profile walking pose (~7s in) instead of the clip's
-    // own first frame, then play normally (and loop normally) from there.
-    heroVideo.addEventListener("loadedmetadata", () => {
+    // own first frame. Playback itself is driven by the native `autoplay`
+    // attribute (mobile browsers block script-triggered .play() far more
+    // aggressively than native autoplay), so this only nudges the start
+    // point — it never gates whether the video plays.
+    const seekToStart = () => {
       heroVideo.currentTime = 7;
-    });
-    heroVideo.addEventListener("seeked", function onFirstSeek() {
-      heroVideo.removeEventListener("seeked", onFirstSeek);
+    };
+    if (heroVideo.readyState >= 1) {
+      seekToStart();
+    } else {
+      heroVideo.addEventListener("loadedmetadata", seekToStart, { once: true });
+    }
+    // Belt-and-suspenders: if autoplay still gets blocked on a given
+    // device, try once more on the first user touch/click anywhere.
+    const tryPlay = () => {
       heroVideo.play().catch(() => {});
-    });
+    };
+    tryPlay();
+    document.addEventListener("touchstart", tryPlay, { once: true, passive: true });
+    document.addEventListener("click", tryPlay, { once: true });
   }
 
   const topbar = document.querySelector(".topbar");
