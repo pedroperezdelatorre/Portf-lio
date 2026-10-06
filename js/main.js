@@ -1,23 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const heroVideo = document.getElementById("heroVideo");
   if (heroVideo) {
-    const PLAYBACK_RATE = 0.85;
-    const START_TIME = 7; // side-profile walking pose, instead of the clip's own first frame
-    // Frame where the walk cycle lands back in the same pose/position as
-    // START_TIME (found by comparing frames), so cutting here instead of
-    // at the clip's own end reads as one continuous stride, not a reset.
-    const LOOP_END_TIME = 12.07;
-
-    heroVideo.playbackRate = PLAYBACK_RATE;
-
-    const seekToStart = () => {
-      heroVideo.currentTime = START_TIME;
-    };
-    if (heroVideo.readyState >= 1) {
-      seekToStart();
-    } else {
-      heroVideo.addEventListener("loadedmetadata", seekToStart, { once: true });
-    }
     // Belt-and-suspenders: if autoplay still gets blocked on a given
     // device, try once more on the first user touch/click anywhere.
     const tryPlay = () => {
@@ -26,14 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     tryPlay();
     document.addEventListener("touchstart", tryPlay, { once: true, passive: true });
     document.addEventListener("click", tryPlay, { once: true });
-
-    const tick = () => {
-      if (heroVideo.currentTime >= LOOP_END_TIME) {
-        heroVideo.currentTime = START_TIME;
-      }
-      requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
   }
 
   const topbar = document.querySelector(".topbar");
