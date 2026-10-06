@@ -1,28 +1,63 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const heroVideo = document.getElementById("heroVideo");
-  if (heroVideo) {
-    heroVideo.playbackRate = 0.85;
-    // Open on the side-profile walking pose (~7s in) instead of the clip's
-    // own first frame. Playback itself is driven by the native `autoplay`
-    // attribute (mobile browsers block script-triggered .play() far more
-    // aggressively than native autoplay), so this only nudges the start
-    // point — it never gates whether the video plays.
+  const heroVideoA = document.getElementById("heroVideoA");
+  const heroVideoB = document.getElementById("heroVideoB");
+  if (heroVideoA && heroVideoB) {
+    const PLAYBACK_RATE = 0.85;
+    const START_TIME = 7; // side-profile walking pose, instead of the clip's own first frame
+    const CROSSFADE = 0.6; // seconds — matches the .hero-video opacity transition
+
+    heroVideoA.playbackRate = PLAYBACK_RATE;
+    heroVideoB.playbackRate = PLAYBACK_RATE;
+
     const seekToStart = () => {
-      heroVideo.currentTime = 7;
+      heroVideoA.currentTime = START_TIME;
     };
-    if (heroVideo.readyState >= 1) {
+    if (heroVideoA.readyState >= 1) {
       seekToStart();
     } else {
-      heroVideo.addEventListener("loadedmetadata", seekToStart, { once: true });
+      heroVideoA.addEventListener("loadedmetadata", seekToStart, { once: true });
     }
     // Belt-and-suspenders: if autoplay still gets blocked on a given
     // device, try once more on the first user touch/click anywhere.
     const tryPlay = () => {
-      heroVideo.play().catch(() => {});
+      heroVideoA.play().catch(() => {});
     };
     tryPlay();
     document.addEventListener("touchstart", tryPlay, { once: true, passive: true });
     document.addEventListener("click", tryPlay, { once: true });
+
+    // The clip's last frame doesn't quite match its first frame, so a hard
+    // loop (native `loop`) has a visible hitch. Instead, two copies of the
+    // same video take turns: shortly before the visible one reaches the
+    // end, the other (already primed at time 0) starts playing underneath
+    // and we cross-dissolve into it, masking the seam instead of cutting
+    // on it.
+    let active = heroVideoA;
+    let standby = heroVideoB;
+    let swapping = false;
+
+    const swap = () => {
+      swapping = true;
+      standby.currentTime = 0;
+      standby.play().catch(() => {});
+      standby.classList.add("is-active");
+      active.classList.remove("is-active");
+      const justHidden = active;
+      active = standby;
+      standby = justHidden;
+      setTimeout(() => {
+        standby.pause();
+        swapping = false;
+      }, CROSSFADE * 1000);
+    };
+
+    const tick = () => {
+      if (!swapping && active.duration && active.currentTime >= active.duration - CROSSFADE) {
+        swap();
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
   }
 
   const topbar = document.querySelector(".topbar");
