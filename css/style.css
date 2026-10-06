@@ -237,14 +237,19 @@ button { font: inherit; }
   min-height: 100vh;
   min-height: 100dvh;
   background-color: #fa4f02;
-  background-image: url("../assets/home-bg.png");
-  background-size: auto 115%;
-  background-position: center calc(100% + 35px);
-  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   overflow: hidden;
   scroll-margin-top: var(--topbar-h);
+}
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 68%;
+  z-index: 0;
 }
 .hero-inner {
   position: relative;

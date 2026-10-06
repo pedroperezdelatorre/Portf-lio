@@ -1,4 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const heroVideo = document.getElementById("heroVideo");
+  if (heroVideo) {
+    heroVideo.playbackRate = 0.85;
+    // Open on the side-profile walking pose (~7s in) instead of the clip's
+    // own first frame, then play normally (and loop normally) from there.
+    heroVideo.addEventListener("loadedmetadata", () => {
+      heroVideo.currentTime = 7;
+    });
+    heroVideo.addEventListener("seeked", function onFirstSeek() {
+      heroVideo.removeEventListener("seeked", onFirstSeek);
+      heroVideo.play().catch(() => {});
+    });
+  }
+
   const topbar = document.querySelector(".topbar");
   if (topbar) {
     const toggleScrolled = () => {
