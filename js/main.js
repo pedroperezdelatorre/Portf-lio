@@ -1,59 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const heroVideoA = document.getElementById("heroVideoA");
-  const heroVideoB = document.getElementById("heroVideoB");
-  if (heroVideoA && heroVideoB) {
+  const heroVideo = document.getElementById("heroVideo");
+  if (heroVideo) {
     const PLAYBACK_RATE = 0.85;
     const START_TIME = 7; // side-profile walking pose, instead of the clip's own first frame
-    const CROSSFADE = 0.6; // seconds — matches the .hero-video opacity transition
+    // Frame where the walk cycle lands back in the same pose/position as
+    // START_TIME (found by comparing frames), so cutting here instead of
+    // at the clip's own end reads as one continuous stride, not a reset.
+    const LOOP_END_TIME = 12.07;
 
-    heroVideoA.playbackRate = PLAYBACK_RATE;
-    heroVideoB.playbackRate = PLAYBACK_RATE;
+    heroVideo.playbackRate = PLAYBACK_RATE;
 
     const seekToStart = () => {
-      heroVideoA.currentTime = START_TIME;
+      heroVideo.currentTime = START_TIME;
     };
-    if (heroVideoA.readyState >= 1) {
+    if (heroVideo.readyState >= 1) {
       seekToStart();
     } else {
-      heroVideoA.addEventListener("loadedmetadata", seekToStart, { once: true });
+      heroVideo.addEventListener("loadedmetadata", seekToStart, { once: true });
     }
     // Belt-and-suspenders: if autoplay still gets blocked on a given
     // device, try once more on the first user touch/click anywhere.
     const tryPlay = () => {
-      heroVideoA.play().catch(() => {});
+      heroVideo.play().catch(() => {});
     };
     tryPlay();
     document.addEventListener("touchstart", tryPlay, { once: true, passive: true });
     document.addEventListener("click", tryPlay, { once: true });
 
-    // The clip's last frame doesn't quite match its first frame, so a hard
-    // loop (native `loop`) has a visible hitch. Instead, two copies of the
-    // same video take turns: shortly before the visible one reaches the
-    // end, the other (already primed at time 0) starts playing underneath
-    // and we cross-dissolve into it, masking the seam instead of cutting
-    // on it.
-    let active = heroVideoA;
-    let standby = heroVideoB;
-    let swapping = false;
-
-    const swap = () => {
-      swapping = true;
-      standby.currentTime = 0;
-      standby.play().catch(() => {});
-      standby.classList.add("is-active");
-      active.classList.remove("is-active");
-      const justHidden = active;
-      active = standby;
-      standby = justHidden;
-      setTimeout(() => {
-        standby.pause();
-        swapping = false;
-      }, CROSSFADE * 1000);
-    };
-
     const tick = () => {
-      if (!swapping && active.duration && active.currentTime >= active.duration - CROSSFADE) {
-        swap();
+      if (heroVideo.currentTime >= LOOP_END_TIME) {
+        heroVideo.currentTime = START_TIME;
       }
       requestAnimationFrame(tick);
     };
