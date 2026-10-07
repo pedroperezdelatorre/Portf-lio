@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const heroVideo = document.getElementById("heroVideo");
   if (heroVideo) {
+    heroVideo.playbackRate = 0.85;
     // Belt-and-suspenders: if autoplay still gets blocked on a given
     // device, try once more on the first user touch/click anywhere.
     const tryPlay = () => {
