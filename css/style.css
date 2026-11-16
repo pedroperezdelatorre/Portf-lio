@@ -164,8 +164,9 @@ button { font: inherit; }
 .topbar-right {
   justify-self: end;
   display: flex;
-  align-items: center;
-  gap: clamp(12px, 2vw, 20px);
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
   max-width: 100%;
 }
 
@@ -207,8 +208,8 @@ button { font: inherit; }
 .lang-toggle {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px;
+  gap: 8px;
+  padding: 10px 14px;
   background: rgba(0, 0, 0, 0.14);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -219,8 +220,8 @@ button { font: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 20px;
+  width: 20px;
+  height: 14px;
   padding: 0;
   border: none;
   border-radius: 5px;
