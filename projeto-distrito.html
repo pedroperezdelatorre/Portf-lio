@@ -51,50 +51,59 @@
 .cs-annot-stage.is-stacked .cs-annot-dot{display:none;}
 </style>
 </head>
-<body class="case-study">
+<body class="case-study" data-i18n-title="distrito.title" data-i18n-desc="distrito.desc">
 
 <div class="cursor-glow" aria-hidden="true"></div>
 
 <a href="index.html#projetos" class="cs-back">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-  Voltar aos projetos
+  <span data-i18n="cs.back">Voltar aos projetos</span>
 </a>
+
+<div class="lang-toggle cs-lang-toggle" role="group" aria-label="Idioma / Language">
+  <button type="button" class="lang-btn is-active" data-lang="pt" aria-pressed="true" aria-label="Português (Brasil)">
+    <svg viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="24" height="16" fill="#009739"/><polygon points="12,2 22,8 12,14 2,8" fill="#FEDD00"/><circle cx="12" cy="8" r="4.2" fill="#002776"/></svg>
+  </button>
+  <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English (US)">
+    <svg viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="24" height="16" fill="#B22234"/><g fill="#fff"><rect y="1.23" width="24" height="1.23"/><rect y="3.69" width="24" height="1.23"/><rect y="6.15" width="24" height="1.23"/><rect y="8.62" width="24" height="1.23"/><rect y="11.08" width="24" height="1.23"/><rect y="13.54" width="24" height="1.23"/></g><rect width="10" height="8.62" fill="#3C3B6E"/></svg>
+  </button>
+</div>
 
 <section class="cs-hero">
   <div class="cs-heroimg" style="background-image:url('assets/case-study/vibe-flame.png')"></div>
   <div class="cs-darken"></div>
   <div class="cs-grain"></div>
   <div class="cs-hero-body">
-    <h1>Revitalização do <em>Busca de Startups</em></h1>
+    <h1 data-i18n="distrito.hero.h1">Revitalização do <em>Busca de Startups</em></h1>
     <div class="cs-glass-card">
-      <div class="meta-item"><label>Cliente</label><span>Distrito</span></div>
-      <div class="meta-item"><label>Papel</label><span>Product Designer</span></div>
-      <div class="meta-item"><label>Ano</label><span>2025</span></div>
+      <div class="meta-item"><label data-i18n="cs.meta.client">Cliente</label><span>Distrito</span></div>
+      <div class="meta-item"><label data-i18n="cs.meta.role">Papel</label><span>Product Designer</span></div>
+      <div class="meta-item"><label data-i18n="cs.meta.year">Ano</label><span>2025</span></div>
     </div>
   </div>
 </section>
 
-<div class="cs-cover-wrap"><img src="assets/project-distrito-cover.png" alt="Revitalização do Busca de Startups" style="object-position:center 90%;" /></div>
+<div class="cs-cover-wrap"><img src="assets/project-distrito-cover.png" alt="Revitalização do Busca de Startups" style="object-position:center 90%;" data-i18n-attr="alt:distrito.cover.alt" /></div>
 
 <div class="cs-content">
   <div class="glow-spot a"></div>
   <div>
-    <h2 class="cs-section-title">Visão geral</h2>
-    <p class="cs-body-text">O Busca de Startups é a principal ferramenta do SaaS do Distrito. A empresa possui o maior banco de dados de startups da América Latina, e essa feature existe para possibilitar uma pesquisa aprofundada nesse banco. A questão é que o nosso então CEO nos fez a seguinte pergunta: "Por que a nossa feature de maior valor dentro da empresa não tem despertado interesse nos nossos usuários?" e os números confirmavam, 60% das pesquisas iniciadas não eram concluídas.</p>
-    <p class="cs-body-text" style="margin-top:20px;">Guiei a revitalização da sua página inicial, que possuía fricções desnecessárias, jornadas mal pensadas e uma alta carga cognitiva para o usuário.</p>
-    <div class="cs-editorial-title">Interface antiga</div>
+    <h2 class="cs-section-title" data-i18n="cs.section.overview">Visão geral</h2>
+    <p class="cs-body-text" data-i18n="distrito.overview.p1">O Busca de Startups é a principal ferramenta do SaaS do Distrito. A empresa possui o maior banco de dados de startups da América Latina, e essa feature existe para possibilitar uma pesquisa aprofundada nesse banco. A questão é que o nosso então CEO nos fez a seguinte pergunta: "Por que a nossa feature de maior valor dentro da empresa não tem despertado interesse nos nossos usuários?" e os números confirmavam, 60% das pesquisas iniciadas não eram concluídas.</p>
+    <p class="cs-body-text" style="margin-top:20px;" data-i18n="distrito.overview.p2">Guiei a revitalização da sua página inicial, que possuía fricções desnecessárias, jornadas mal pensadas e uma alta carga cognitiva para o usuário.</p>
+    <div class="cs-editorial-title" data-i18n="distrito.editorial.oldTitle">Interface antiga</div>
     <div class="cs-editorial-rule"></div>
     <div class="cs-editorial-img">
-      <img src="assets/case-study/distrito/busca-antigo.png" alt="Busca de startups - interface antiga" />
+      <img src="assets/case-study/distrito/busca-antigo.png" alt="Busca de startups - interface antiga" data-i18n-attr="alt:distrito.editorial.oldImgAlt" />
     </div>
     <div class="cs-editorial-rule bottom-right"></div>
-    <div class="cs-editorial-cap">Navegação lateral extensa e alta carga cognitiva</div>
+    <div class="cs-editorial-cap" data-i18n="distrito.editorial.oldCap">Navegação lateral extensa e alta carga cognitiva</div>
   </div>
 
   <div>
-    <h2 class="cs-section-title">Desafio e insights</h2>
-    <p class="cs-body-text">Nosso principal objetivo era claro: tornar a pesquisa fácil e intuitiva e para isso, começamos pelo início, entendendo o usuário. Depois de diversas pesquisas (workshops com stakeholders, survey com usuários ativos e lost users, entrevistas 1:1, benchmarks e análise de dados), chegamos à conclusão que a quantidade de informações presentes na tela de início (uma vez inseridas com a ideia de complementar a busca) mais confundiam e frustravam o usuário do que de fato o ajudavam.</p>
-    <p class="cs-body-text" style="margin-top:20px;">Não deveríamos reinventar a roda, muito pelo contrário, ferramentas de pesquisa são, quiçá, o recurso mais antigo da internet. Por que não usar as já bem aceitas como base? Tivemos a intenção de manter essa ação no imaginário comum, por isso os protótipos desenvolvidos nesse projeto tiveram forte influência em soluções usadas pelo Google, Chat GPT e até o buscar do Instagram.</p>  </div>
+    <h2 class="cs-section-title" data-i18n="cs.section.challenge">Desafio e insights</h2>
+    <p class="cs-body-text" data-i18n="distrito.challenge.p1">Nosso principal objetivo era claro: tornar a pesquisa fácil e intuitiva e para isso, começamos pelo início, entendendo o usuário. Depois de diversas pesquisas (workshops com stakeholders, survey com usuários ativos e lost users, entrevistas 1:1, benchmarks e análise de dados), chegamos à conclusão que a quantidade de informações presentes na tela de início (uma vez inseridas com a ideia de complementar a busca) mais confundiam e frustravam o usuário do que de fato o ajudavam.</p>
+    <p class="cs-body-text" style="margin-top:20px;" data-i18n="distrito.challenge.p2">Não deveríamos reinventar a roda, muito pelo contrário, ferramentas de pesquisa são, quiçá, o recurso mais antigo da internet. Por que não usar as já bem aceitas como base? Tivemos a intenção de manter essa ação no imaginário comum, por isso os protótipos desenvolvidos nesse projeto tiveram forte influência em soluções usadas pelo Google, Chat GPT e até o buscar do Instagram.</p>  </div>
 
 </div>
 
@@ -103,40 +112,40 @@
 <div class="cs-content">
   <div class="glow-spot c"></div>
   <div>
-    <h2 class="cs-section-title">Solução</h2>
-    <p class="cs-body-text">Com um caminho bem traçado — mapeado em wireframes, jornadas e em uma matriz de priorização por impacto x esforço —, diminuímos a quantidade de insumos iniciais e focamos a atenção do usuário no que realmente era importante nessa tela: a busca. Os filtros e salvamentos foram mantidos, mas tendo um peso secundário na experiência. Criamos sugestões de pesquisas para ajudar àqueles que não tinham uma certeza de por onde começar e adicionamos informativos das atualizações do banco de dados. Ações mais avançadas ficaram "camufladas" para os usuários casuais, mas continuam acessíveis para os power users.</p>
-    <p class="cs-body-text" style="margin-top:20px;">Em três meses de implementação, os resultados do redesign eram notáveis. Os usuários gerais da plataforma aumentaram, o número de pesquisas completas cresceu, a taxa de turnovers na ferramenta diminuiu e 30% das pesquisas passaram a ser feitas através das sugestões. Fizemos um acompanhamento com os stakeholders e a mudança foi muito bem recebida, praticamente ressucitando a ferramenta.</p>
-    <div class="cs-editorial-title">Interface nova</div>
+    <h2 class="cs-section-title" data-i18n="cs.section.solution">Solução</h2>
+    <p class="cs-body-text" data-i18n="distrito.solution.p1">Com um caminho bem traçado — mapeado em wireframes, jornadas e em uma matriz de priorização por impacto x esforço —, diminuímos a quantidade de insumos iniciais e focamos a atenção do usuário no que realmente era importante nessa tela: a busca. Os filtros e salvamentos foram mantidos, mas tendo um peso secundário na experiência. Criamos sugestões de pesquisas para ajudar àqueles que não tinham uma certeza de por onde começar e adicionamos informativos das atualizações do banco de dados. Ações mais avançadas ficaram "camufladas" para os usuários casuais, mas continuam acessíveis para os power users.</p>
+    <p class="cs-body-text" style="margin-top:20px;" data-i18n="distrito.solution.p2">Em três meses de implementação, os resultados do redesign eram notáveis. Os usuários gerais da plataforma aumentaram, o número de pesquisas completas cresceu, a taxa de turnovers na ferramenta diminuiu e 30% das pesquisas passaram a ser feitas através das sugestões. Fizemos um acompanhamento com os stakeholders e a mudança foi muito bem recebida, praticamente ressucitando a ferramenta.</p>
+    <div class="cs-editorial-title" data-i18n="distrito.editorial.newTitle">Interface nova</div>
     <div class="cs-editorial-rule"></div>
     <div class="cs-editorial-img">
-      <img src="assets/case-study/distrito/busca-novo.png" alt="Busca de startups - interface redesenhada" />
+      <img src="assets/case-study/distrito/busca-novo.png" alt="Busca de startups - interface redesenhada" data-i18n-attr="alt:distrito.editorial.newImgAlt" />
     </div>
     <div class="cs-editorial-rule bottom-right"></div>
-    <div class="cs-editorial-cap">Busca como ação principal e sugestões de pesquisa</div>
+    <div class="cs-editorial-cap" data-i18n="distrito.editorial.newCap">Busca como ação principal e sugestões de pesquisa</div>
 
-    <div class="cs-editorial-title">Decisões de design</div>
+    <div class="cs-editorial-title" data-i18n="distrito.editorial.decisionsTitle">Decisões de design</div>
     <div class="cs-editorial-rule"></div>
 
     <div class="cs-annot-stage">
       <div class="cs-annot-img">
-        <img src="assets/case-study/distrito/busca-novo.png" alt="Interface da busca de startups redesenhada" />
+        <img src="assets/case-study/distrito/busca-novo.png" alt="Interface da busca de startups redesenhada" data-i18n-attr="alt:distrito.annot.imgAlt" />
       </div>
 
       <div class="cs-annot-cards-col">
         <div class="cs-annot-card">
-          <div class="cs-annot-text"><span class="cs-annot-num"></span>Diminuição da carga cognitiva</div>
+          <div class="cs-annot-text"><span class="cs-annot-num"></span><span data-i18n="distrito.annot.card1">Diminuição da carga cognitiva</span></div>
         </div>
         <div class="cs-annot-card cs-annot-linked">
-          <div class="cs-annot-text"><span class="cs-annot-num"></span>Ações avançadas camufladas para soft users, mas presentes para os power users</div>
+          <div class="cs-annot-text"><span class="cs-annot-num"></span><span data-i18n="distrito.annot.card2">Ações avançadas camufladas para soft users, mas presentes para os power users</span></div>
         </div>
         <div class="cs-annot-card cs-annot-linked">
-          <div class="cs-annot-text"><span class="cs-annot-num"></span>Buscador como ação principal da experiência</div>
+          <div class="cs-annot-text"><span class="cs-annot-num"></span><span data-i18n="distrito.annot.card3">Buscador como ação principal da experiência</span></div>
         </div>
         <div class="cs-annot-card cs-annot-linked">
-          <div class="cs-annot-text"><span class="cs-annot-num"></span>Sugestões de temas e assuntos de pesquisa</div>
+          <div class="cs-annot-text"><span class="cs-annot-num"></span><span data-i18n="distrito.annot.card4">Sugestões de temas e assuntos de pesquisa</span></div>
         </div>
         <div class="cs-annot-card cs-annot-linked">
-          <div class="cs-annot-text"><span class="cs-annot-num"></span>Big numbers reafirmando o valor da feature</div>
+          <div class="cs-annot-text"><span class="cs-annot-num"></span><span data-i18n="distrito.annot.card5">Big numbers reafirmando o valor da feature</span></div>
         </div>
       </div>
 
@@ -161,20 +170,20 @@
     </div>
 
     <div class="cs-editorial-rule bottom-right"></div>
-    <div class="cs-editorial-cap">Baseadas nas pesquisas e Heurísticas</div>
+    <div class="cs-editorial-cap" data-i18n="distrito.editorial.decisionsCap">Baseadas nas pesquisas e Heurísticas</div>
   </div>
 
   <div class="cs-result-row">
     <div class="cs-rail-accent"></div>
     <div class="cs-result-card">
-      <h2 class="cs-section-title" style="margin-bottom:24px;">Resultados</h2>
+      <h2 class="cs-section-title" style="margin-bottom:24px;" data-i18n="cs.section.results">Resultados</h2>
       <ul class="cs-result-list">
-        <li>+15% de usuários gerais na plataforma</li>
-        <li>+45% de pesquisas completas</li>
-        <li>-18% de turnover na ferramenta</li>
-        <li>30% das pesquisas realizadas através das sugestões</li>
+        <li data-i18n="distrito.results.li1">+15% de usuários gerais na plataforma</li>
+        <li data-i18n="distrito.results.li2">+45% de pesquisas completas</li>
+        <li data-i18n="distrito.results.li3">-18% de turnover na ferramenta</li>
+        <li data-i18n="distrito.results.li4">30% das pesquisas realizadas através das sugestões</li>
       </ul>
-      <p class="cs-gallery-note" style="margin-top:24px;">"Os scouts do time voltaram a ser feitos pelo Busca."</p>
+      <p class="cs-gallery-note" style="margin-top:24px;" data-i18n="distrito.results.quote">"Os scouts do time voltaram a ser feitos pelo Busca."</p>
     </div>
   </div>
 </div>
@@ -245,6 +254,7 @@
 })();
 </script>
 
+<script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

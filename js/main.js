@@ -1,4 +1,54 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // ---------- Language toggle (PT-BR / EN) ----------
+  const dict = window.I18N;
+  if (dict) {
+    const LANG_KEY = "siteLang";
+
+    const applyLanguage = (lang) => {
+      const table = dict[lang] || dict.pt;
+      document.documentElement.lang = lang === "en" ? "en" : "pt-BR";
+
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const value = table[el.getAttribute("data-i18n")];
+        if (value != null) el.innerHTML = value;
+      });
+
+      document.querySelectorAll("[data-i18n-attr]").forEach((el) => {
+        el.getAttribute("data-i18n-attr").split("|").forEach((pair) => {
+          const [attr, key] = pair.split(":");
+          const value = table[key];
+          if (value != null) el.setAttribute(attr, value);
+        });
+      });
+
+      const titleKey = document.body.getAttribute("data-i18n-title");
+      if (titleKey && table[titleKey]) document.title = table[titleKey];
+
+      const descKey = document.body.getAttribute("data-i18n-desc");
+      if (descKey && table[descKey]) {
+        const meta = document.querySelector('meta[name="description"]');
+        if (meta) meta.setAttribute("content", table[descKey]);
+      }
+
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        const isActive = btn.dataset.lang === lang;
+        btn.classList.toggle("is-active", isActive);
+        btn.setAttribute("aria-pressed", String(isActive));
+      });
+    };
+
+    const savedLang = localStorage.getItem(LANG_KEY) || "pt";
+    applyLanguage(savedLang);
+
+    document.querySelectorAll(".lang-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const lang = btn.dataset.lang;
+        localStorage.setItem(LANG_KEY, lang);
+        applyLanguage(lang);
+      });
+    });
+  }
+
   const heroVideo = document.getElementById("heroVideo");
   if (heroVideo) {
     heroVideo.playbackRate = 0.85;

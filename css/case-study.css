@@ -58,6 +58,13 @@ body.case-study::before {
   box-shadow: 0 0 0 1px rgba(251, 78, 1, 0.5), 0 0 22px 4px rgba(251, 78, 1, 0.4);
 }
 
+.cs-lang-toggle {
+  position: fixed;
+  top: clamp(20px, 3vw, 32px);
+  right: clamp(20px, 4vw, 48px);
+  z-index: 40;
+}
+
 .eyebrow {
   display: inline-block;
   font-size: 12px;

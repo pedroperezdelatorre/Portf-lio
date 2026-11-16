@@ -16,41 +16,50 @@
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/case-study.css" />
 </head>
-<body class="case-study">
+<body class="case-study" data-i18n-title="trackfield.title" data-i18n-desc="trackfield.desc">
 
 <div class="cursor-glow" aria-hidden="true"></div>
 
 <a href="index.html#projetos" class="cs-back">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-  Voltar aos projetos
+  <span data-i18n="cs.back">Voltar aos projetos</span>
 </a>
+
+<div class="lang-toggle cs-lang-toggle" role="group" aria-label="Idioma / Language">
+  <button type="button" class="lang-btn is-active" data-lang="pt" aria-pressed="true" aria-label="Português (Brasil)">
+    <svg viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="24" height="16" fill="#009739"/><polygon points="12,2 22,8 12,14 2,8" fill="#FEDD00"/><circle cx="12" cy="8" r="4.2" fill="#002776"/></svg>
+  </button>
+  <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English (US)">
+    <svg viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="24" height="16" fill="#B22234"/><g fill="#fff"><rect y="1.23" width="24" height="1.23"/><rect y="3.69" width="24" height="1.23"/><rect y="6.15" width="24" height="1.23"/><rect y="8.62" width="24" height="1.23"/><rect y="11.08" width="24" height="1.23"/><rect y="13.54" width="24" height="1.23"/></g><rect width="10" height="8.62" fill="#3C3B6E"/></svg>
+  </button>
+</div>
 
 <section class="cs-hero">
   <div class="cs-heroimg" style="background-image:url('assets/case-study/vibe-flame.png')"></div>
   <div class="cs-darken"></div>
   <div class="cs-grain"></div>
   <div class="cs-hero-body">
-    <h1>Workshop <em>Track&amp;Field</em></h1>
+    <h1 data-i18n="trackfield.hero.h1">Workshop <em>Track&amp;Field</em></h1>
     <div class="cs-glass-card">
-      <div class="meta-item"><label>Cliente</label><span>Track&amp;Field</span></div>
-      <div class="meta-item"><label>Papel</label><span>Researcher</span></div>
-      <div class="meta-item"><label>Ano</label><span>2025</span></div>
+      <div class="meta-item"><label data-i18n="cs.meta.client">Cliente</label><span>Track&amp;Field</span></div>
+      <div class="meta-item"><label data-i18n="cs.meta.role">Papel</label><span>Researcher</span></div>
+      <div class="meta-item"><label data-i18n="cs.meta.year">Ano</label><span>2025</span></div>
     </div>
   </div>
 </section>
 
-<div class="cs-cover-wrap"><img src="assets/project-trackfield-cover.png" alt="Workshop Track&Field" style="object-position:center 25%;" /></div>
+<div class="cs-cover-wrap"><img src="assets/project-trackfield-cover.png" alt="Workshop Track&Field" style="object-position:center 25%;" data-i18n-attr="alt:trackfield.cover.alt" /></div>
 
 <div class="cs-content">
   <div class="glow-spot a"></div>
   <div>
-    <h2 class="cs-section-title">Visão geral</h2>
-    <p class="cs-body-text">A Track&amp;Field contratou o Distrito para uma implementação de IA. Não sabiam exatamente o que buscavam, só que queriam adotar inteligência artificial nos processos da empresa. Para definir os caminhos que seguiríamos, realizamos um workshop com o C-Level e diretores da marca utilizando diversos métodos de pesquisa.</p>
+    <h2 class="cs-section-title" data-i18n="cs.section.overview">Visão geral</h2>
+    <p class="cs-body-text" data-i18n="trackfield.overview.p1">A Track&amp;Field contratou o Distrito para uma implementação de IA. Não sabiam exatamente o que buscavam, só que queriam adotar inteligência artificial nos processos da empresa. Para definir os caminhos que seguiríamos, realizamos um workshop com o C-Level e diretores da marca utilizando diversos métodos de pesquisa.</p>
   </div>
 
   <div>
-    <h2 class="cs-section-title">Desafio e insights</h2>
-    <p class="cs-body-text">Nossa maior dificuldade era planejar uma entrega que nem mesmo o cliente sabia o que queria. O método principal de pesquisa escolhido foi fazer um Focus Group com os nomes mais importantes de cada área da T&amp;F.</p>
+    <h2 class="cs-section-title" data-i18n="cs.section.challenge">Desafio e insights</h2>
+    <p class="cs-body-text" data-i18n="trackfield.challenge.p1">Nossa maior dificuldade era planejar uma entrega que nem mesmo o cliente sabia o que queria. O método principal de pesquisa escolhido foi fazer um Focus Group com os nomes mais importantes de cada área da T&amp;F.</p>
   </div>
 </div>
 
@@ -59,40 +68,41 @@
 <div class="cs-content">
   <div class="glow-spot c"></div>
   <div>
-    <h2 class="cs-section-title">A pesquisa</h2>
-    <p class="cs-body-text">Começamos fazendo uma Matriz CSD com post-its e caneta para entendermos as dores gerais dos stakeholders, depois realizamos o "Amazon's working backward method", um mecanismo de imaginar os produtos/soluções prontas e depois ir retrocedendo, materializando assim as ideias postas à mesa.</p>
-    <p class="cs-body-text" style="margin-top:20px;">Quando essas ideias já estavam bem claras e definidas, as alocamos em um board para entendermos o impacto que esses projetos teriam em relação ao esforço de tirá-los do papel — terminando o workshop com um planejamento bem traçado, focado em produtos que de fato entregassem valor e mitigando da maneira mais eficiente os gastos (de dinheiro e tempo) envolvidos no projeto.</p>
+    <h2 class="cs-section-title" data-i18n="trackfield.research.sectionTitle">A pesquisa</h2>
+    <p class="cs-body-text" data-i18n="trackfield.research.p1">Começamos fazendo uma Matriz CSD com post-its e caneta para entendermos as dores gerais dos stakeholders, depois realizamos o "Amazon's working backward method", um mecanismo de imaginar os produtos/soluções prontas e depois ir retrocedendo, materializando assim as ideias postas à mesa.</p>
+    <p class="cs-body-text" style="margin-top:20px;" data-i18n="trackfield.research.p2">Quando essas ideias já estavam bem claras e definidas, as alocamos em um board para entendermos o impacto que esses projetos teriam em relação ao esforço de tirá-los do papel — terminando o workshop com um planejamento bem traçado, focado em produtos que de fato entregassem valor e mitigando da maneira mais eficiente os gastos (de dinheiro e tempo) envolvidos no projeto.</p>
 
     <div class="cs-gallery">
       <div class="cs-gallery-row">
-        <div class="cs-gallery-label"><span class="cs-gallery-num">01</span><span class="cs-gallery-cap">Matriz C.S.D</span></div>
-        <img src="assets/case-study/trackfield/matriz-csd.jpg" alt="Matriz C.S.D do workshop" />
+        <div class="cs-gallery-label"><span class="cs-gallery-num">01</span><span class="cs-gallery-cap" data-i18n="trackfield.gallery.label1">Matriz C.S.D</span></div>
+        <img src="assets/case-study/trackfield/matriz-csd.jpg" alt="Matriz C.S.D do workshop" data-i18n-attr="alt:trackfield.gallery.alt1" />
       </div>
       <div class="cs-gallery-row cs-gallery-contain">
-        <div class="cs-gallery-label"><span class="cs-gallery-num">02</span><span class="cs-gallery-cap">Amazon's working backward</span></div>
-        <img src="assets/case-study/trackfield/amazon-press-release.jpg" alt="Amazon's working backward framework" />
+        <div class="cs-gallery-label"><span class="cs-gallery-num">02</span><span class="cs-gallery-cap" data-i18n="trackfield.gallery.label2">Amazon's working backward</span></div>
+        <img src="assets/case-study/trackfield/amazon-press-release.jpg" alt="Amazon's working backward framework" data-i18n-attr="alt:trackfield.gallery.alt2" />
       </div>
       <div class="cs-gallery-row">
-        <div class="cs-gallery-label"><span class="cs-gallery-num">03</span><span class="cs-gallery-cap">Impacto x Esforço</span></div>
-        <img src="assets/case-study/trackfield/impacto-esforco.jpg" alt="Matriz de Impacto x Esforço" />
+        <div class="cs-gallery-label"><span class="cs-gallery-num">03</span><span class="cs-gallery-cap" data-i18n="trackfield.gallery.label3">Impacto x Esforço</span></div>
+        <img src="assets/case-study/trackfield/impacto-esforco.jpg" alt="Matriz de Impacto x Esforço" data-i18n-attr="alt:trackfield.gallery.alt3" />
       </div>
     </div>
-    <p class="cs-gallery-note">Os textos das imagens acima foram censurados por conterem informações sigilosas da empresa contratante.</p>
+    <p class="cs-gallery-note" data-i18n="trackfield.gallery.note">Os textos das imagens acima foram censurados por conterem informações sigilosas da empresa contratante.</p>
   </div>
 
   <div class="cs-result-row">
     <div class="cs-rail-accent"></div>
     <div class="cs-result-card">
-      <h2 class="cs-section-title" style="margin-bottom:24px;">Resultados</h2>
+      <h2 class="cs-section-title" style="margin-bottom:24px;" data-i18n="cs.section.results">Resultados</h2>
       <ul class="cs-result-list">
-        <li>Ideação e priorização de produtos de IA</li>
-        <li>Alinhamento com o cliente e stakeholders sobre entregas, produtos e prazos</li>
-        <li>Gastos de tempo e dinheiro mitigados com hipóteses validadas antes da execução</li>
+        <li data-i18n="trackfield.results.li1">Ideação e priorização de produtos de IA</li>
+        <li data-i18n="trackfield.results.li2">Alinhamento com o cliente e stakeholders sobre entregas, produtos e prazos</li>
+        <li data-i18n="trackfield.results.li3">Gastos de tempo e dinheiro mitigados com hipóteses validadas antes da execução</li>
       </ul>
     </div>
   </div>
 </div>
 
+<script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
